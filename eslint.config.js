@@ -3,6 +3,7 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import stylistic from '@stylistic/eslint-plugin';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -29,6 +30,9 @@ export default defineConfig([
       reportUnusedDisableDirectives: 'error',
       reportUnusedInlineConfigs: 'error',
     },
+    plugins: {
+      '@stylistic': stylistic,
+    },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
@@ -42,10 +46,8 @@ export default defineConfig([
       'no-nested-ternary': 'error',
       'no-undefined': 'error',
       'no-useless-return': 'error',
-      // You can continue to use deprecated rules indefinitely if they are working for you.
-      // However, keep in mind that deprecated rules will effectively be unmaintained and may be removed at some point.
-      semi: ['error', 'always'],
-      quotes: ['warn', 'single'],
+      '@stylistic/semi': 'warn',
+      '@stylistic/quotes': ['warn', 'single', { avoidEscape: true }],
     },
   },
 ]);
